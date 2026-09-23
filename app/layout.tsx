@@ -6,7 +6,7 @@ import Footer from '@/components/Footer';
 export const metadata: Metadata = {
   title: 'MUSIC BASE — Make Music. Better.',
   description: '音楽を作る人、演奏する人、楽しむ人のための無料ツール＆音楽ハブ。',
-  metadataBase: new URL('https://example-music-base.vercel.app'),
+  metadataBase: new URL('https://music-base.vercel.app'),
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
