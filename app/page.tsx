@@ -39,7 +39,7 @@ export default function HomePage() {
       <section className="border-t border-borderSoft py-14">
         <div className="mx-auto max-w-[1180px] px-6">
           <div className="mb-7 flex flex-wrap items-baseline justify-between gap-2.5">
-            <h2 className="font-disp text-3xl font-semibold tracking-tight">Tools you&apos;ll actually use.</h2>
+            <h2 className="font-disp text-3xl font-semibold tracking-tight">本当に使えるツール。</h2>
             <Link href="/tools" className="rounded-full border border-border px-4 py-2 text-sm transition-colors hover:border-accent2 hover:text-accent2">
               全{TOOLS.length}ツールを見る →
             </Link>

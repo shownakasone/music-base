@@ -5,11 +5,7 @@ import { TOOLS } from '@/lib/tools-data';
 
 export default function Header() {
   const [open, setOpen] = useState(false);
-  const links = [
-    { href: '/tools', label: 'Tools', badge: TOOLS.length },
-    { href: '/', label: 'Learn' },
-    { href: '/', label: 'Discover' },
-  ];
+  const links = [{ href: '/tools', label: 'Tools', badge: TOOLS.length }];
 
   return (
     <>
@@ -19,18 +15,6 @@ export default function Header() {
             <span className="h-2 w-2 rounded-full bg-gradient-to-br from-accent to-accent2 shadow-[0_0_10px_rgba(63,208,255,.5)]" />
             MUSIC BASE
           </Link>
-          <nav className="hidden gap-8 md:flex">
-            {links.map((l) => (
-              <Link key={l.label} href={l.href} className="text-sm text-textDim transition-colors hover:text-text">
-                {l.label}
-                {l.badge ? (
-                  <span className="ml-1.5 rounded-full bg-accent2/15 px-1.5 py-0.5 text-[10px] font-bold text-accent2">
-                    {l.badge}
-                  </span>
-                ) : null}
-              </Link>
-            ))}
-          </nav>
           <div className="flex items-center gap-4 text-sm text-textDim">
             <Link href="/tools" className="hidden rounded-full border border-border px-4 py-2 text-text transition-colors hover:border-accent2 hover:text-accent2 md:inline-block">
               Tools
