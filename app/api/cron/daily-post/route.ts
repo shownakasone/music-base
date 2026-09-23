@@ -32,6 +32,9 @@ async function postToThreads(text: string): Promise<ThreadsPostResult> {
       return { posted: false, reason: 'create_failed', detail: createData };
     }
 
+    // Threads APIの仕様上、コンテナ作成直後は公開できないことがあるため少し待つ
+    await new Promise((resolve) => setTimeout(resolve, 15000));
+
     const publishRes = await fetch(`https://graph.threads.net/v1.0/${userId}/threads_publish`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
