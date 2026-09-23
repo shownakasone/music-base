@@ -15,10 +15,9 @@ export default function Footer() {
           <div className="mb-1 text-sm font-semibold text-text">Created by ShowN</div>
           <div>Guitar / Composition / Arrangement / DTM</div>
           <div className="mt-3 flex gap-5">
-            <a className="hover:text-accent2" href="#">YouTube</a>
-            <a className="hover:text-accent2" href="#">X</a>
-            <a className="hover:text-accent2" href="#">Original Music</a>
-            <a className="hover:text-accent2" href="#">Production</a>
+            <a className="hover:text-accent2" href="https://www.instagram.com/shownakasone/" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a className="hover:text-accent2" href="https://www.threads.com/@shownakasone" target="_blank" rel="noopener noreferrer">Threads</a>
+            <a className="hover:text-accent2" href="https://www.youtube.com/@Show-Naka" target="_blank" rel="noopener noreferrer">YouTube</a>
           </div>
         </div>
       </div>
