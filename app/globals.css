@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: 'Space Grotesk', 'Noto Sans JP', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+body {
+  background-color: #0a0a0c;
+  color: #f5f5f7;
+  background-image:
+    radial-gradient(ellipse 60% 40% at 15% 0%, rgba(63,208,255,.06), transparent 60%),
+    radial-gradient(ellipse 50% 35% at 90% 10%, rgba(255,122,104,.05), transparent 60%);
+  background-attachment: fixed;
+}
+
+.card-spot {
+  position: relative;
+  overflow: hidden;
+}
+.card-spot::after {
+  content: '';
+  position: absolute; inset: 0; pointer-events: none; opacity: 0;
+  transition: opacity .35s;
+  background: radial-gradient(280px circle at var(--mx,50%) var(--my,50%), rgba(63,208,255,.14), transparent 60%);
+}
+.card-spot:hover::after { opacity: 1; }
+.card-spot.coral::after {
+  background: radial-gradient(280px circle at var(--mx,50%) var(--my,50%), rgba(255,122,104,.16), transparent 60%);
+}
+
+.note-pill {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  padding: 9px 14px;
+  border-radius: 100px;
+  background: rgba(63,208,255,.13);
+  color: #3fd0ff;
+  border: 1px solid rgba(63,208,255,.25);
+}
+.note-pill.coral {
+  background: rgba(255,122,104,.15);
+  color: #ff7a68;
+  border-color: rgba(255,122,104,.28);
+}
