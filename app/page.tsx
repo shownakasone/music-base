@@ -20,12 +20,7 @@ export default function HomePage() {
           <p className="mt-5 max-w-[480px] text-lg text-textDim">
             音楽を作る人、演奏する人、楽しむ人のための無料ツール＆音楽ハブ。
           </p>
-          <div className="mt-9 flex flex-wrap gap-3.5">
-            <Link href="/tools" className="rounded-full bg-text px-6 py-3.5 text-sm font-semibold text-bg transition-transform hover:-translate-y-0.5 hover:bg-accent">
-              TOOLSを使う
-            </Link>
-          </div>
-          <div className="mt-14 flex flex-wrap gap-11">
+          <div className="mt-10 flex flex-wrap gap-11">
             {[['14', '無料ツール'], ['¥0', '完全無料で利用可'], ['5', 'カテゴリ']].map(([num, label]) => (
               <div key={label}>
                 <div className="font-disp text-3xl font-bold bg-gradient-to-r from-accent to-accent2 bg-clip-text text-transparent">{num}</div>
@@ -33,13 +28,25 @@ export default function HomePage() {
               </div>
             ))}
           </div>
+          <a
+            href="#tools-anchor"
+            className="mt-16 inline-flex flex-col items-center gap-1.5 text-[11px] uppercase tracking-widest text-textFaint transition-colors hover:text-accent"
+          >
+            <span>Scroll</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" className="h-4 w-4 animate-bounce">
+              <path d="M12 4v14M6 13l6 6 6-6" />
+            </svg>
+          </a>
         </div>
       </section>
 
-      <section className="border-t border-borderSoft py-14">
+      <section id="tools-anchor" className="scroll-mt-20 border-t border-borderSoft py-14">
         <div className="mx-auto max-w-[1180px] px-6">
-          <div className="mb-7 flex flex-wrap items-baseline justify-between gap-2.5">
-            <h2 className="font-disp text-3xl font-semibold tracking-tight">本当に使えるツール。</h2>
+          <div className="mb-7 flex flex-wrap items-end justify-between gap-2.5">
+            <div>
+              <div className="mb-1.5 text-xs font-semibold tracking-wide text-accent">Tools you&apos;ll actually use.</div>
+              <h2 className="font-disp text-3xl font-semibold tracking-tight">本当に使えるツール。</h2>
+            </div>
             <Link href="/tools" className="rounded-full border border-border px-4 py-2 text-sm transition-colors hover:border-accent2 hover:text-accent2">
               全{TOOLS.length}ツールを見る →
             </Link>
