@@ -24,12 +24,9 @@ export default function HomePage() {
             <Link href="/tools" className="rounded-full bg-text px-6 py-3.5 text-sm font-semibold text-bg transition-transform hover:-translate-y-0.5 hover:bg-accent">
               TOOLSを使う
             </Link>
-            <Link href="/ai" className="rounded-full border border-border px-6 py-3.5 text-sm font-semibold transition-colors hover:border-accent2 hover:text-accent2">
-              AI MUSIC ASSISTANT
-            </Link>
           </div>
           <div className="mt-14 flex flex-wrap gap-11">
-            {[['14', '無料ツール'], ['¥0', '完全無料で利用可'], ['AI', 'アシスタント搭載']].map(([num, label]) => (
+            {[['14', '無料ツール'], ['¥0', '完全無料で利用可'], ['5', 'カテゴリ']].map(([num, label]) => (
               <div key={label}>
                 <div className="font-disp text-3xl font-bold bg-gradient-to-r from-accent to-accent2 bg-clip-text text-transparent">{num}</div>
                 <div className="mt-1 text-xs text-textDim">{label}</div>
@@ -72,26 +69,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="border-t border-borderSoft py-14">
-        <div className="mx-auto max-w-[1180px] px-6">
-          <h2 className="mb-7 font-disp text-3xl font-semibold tracking-tight">AI Music Assistant</h2>
-          <div className="rounded-3xl border border-border bg-bg1 p-8">
-            <p className="mb-4 text-[15px] text-textDim">
-              曲作りの「なんとなく」を、具体的なアイデアに変える。「サビが弱い」「ギターをもっと目立たせたい」といった悩みを送ると、構成・アレンジ・コード・音色などの観点から改善案を提示します。
-            </p>
-            <div className="mb-5 flex flex-wrap gap-2">
-              <span className="note-pill">構成</span>
-              <span className="note-pill coral">アレンジ</span>
-              <span className="note-pill">コード</span>
-              <span className="note-pill coral">ギター</span>
-              <span className="note-pill">ミックス</span>
-            </div>
-            <Link href="/ai" className="inline-block rounded-full bg-text px-6 py-3.5 text-sm font-semibold text-bg transition-transform hover:-translate-y-0.5 hover:bg-accent">
-              相談してみる →
-            </Link>
-          </div>
-        </div>
-      </section>
     </main>
   );
 }

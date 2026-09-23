@@ -8,7 +8,6 @@ export default function Header() {
   const links = [
     { href: '/tools', label: 'Tools', badge: TOOLS.length },
     { href: '/', label: 'Learn' },
-    { href: '/ai', label: 'AI Music' },
     { href: '/', label: 'Discover' },
   ];
 

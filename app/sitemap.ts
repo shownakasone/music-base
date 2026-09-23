@@ -5,7 +5,7 @@ import { TOOLS } from '@/lib/tools-data';
 const BASE_URL = 'https://music-base.vercel.app';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticPages = ['', '/tools', '/ai'].map((path) => ({
+  const staticPages = ['', '/tools'].map((path) => ({
     url: `${BASE_URL}${path}`,
     lastModified: new Date(),
   }));
