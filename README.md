@@ -49,7 +49,8 @@ app/
 lib/
   music-theory.ts      音楽理論の純粋関数（移調・コード生成・BPM計算など）
   tools-data.ts        ツールのメタデータ（SEO情報を兼ねる）
-  dtm-tips.ts          DTM Tips投稿のコンテンツバンク（月ごとに差し替え）
+  dtm-tips.ts          DTM Tips投稿のコンテンツバンク（30日分、月ごとに差し替え）
+  tool-tips.ts         ツール活用Tips投稿のコンテンツバンク（30日分、月ごとに差し替え）
   social-content.ts    日付から今日の投稿2件を自動選択するロジック
 components/
   tools/               ツールごとのReactコンポーネント（14個）

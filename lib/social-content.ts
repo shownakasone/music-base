@@ -1,5 +1,5 @@
-import { TOOLS } from './tools-data';
 import { DTM_TIPS } from './dtm-tips';
+import { TOOL_TIPS } from './tool-tips';
 
 const SITE_URL = 'https://music-base.vercel.app';
 // ローテーションの基準日。この日から数えた経過日数でコンテンツバンクを順番に回す。
@@ -16,11 +16,11 @@ export function getTodaysTipPost(date: Date = new Date()): string {
   return DTM_TIPS[dayIndex(DTM_TIPS.length, date)];
 }
 
-/** 今日のMUSIC BASEツール紹介投稿本文 */
+/** 今日のMUSIC BASEツール活用Tips投稿本文 */
 export function getTodaysToolPost(date: Date = new Date()): string {
-  const tool = TOOLS[dayIndex(TOOLS.length, date)];
-  const url = `${SITE_URL}/tools/${tool.slug}`;
-  return `【無料ツール紹介】${tool.title}\n\n${tool.desc}\n\nMUSIC BASEで無料で使えます👇\n${url}\n\n#DTM #作曲 #MUSICBASE`;
+  const tip = TOOL_TIPS[dayIndex(TOOL_TIPS.length, date)];
+  const url = `${SITE_URL}/tools/${tip.slug}`;
+  return `【使い方Tips】${tip.title}\n\n${tip.text}\n\n▶︎ ${url}\n\n#DTM #作曲 #MUSICBASE`;
 }
 
 export interface DailyPosts {
