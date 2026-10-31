@@ -54,11 +54,12 @@ export async function GET(request: Request) {
     return NextResponse.json({ error: 'unauthorized' }, { status: 401 });
   }
 
-  const { date, tip, toolPost } = getTodaysPosts();
+  const { date, tip, toolPost, status } = getTodaysPosts();
   const [tipResult, toolResult] = await Promise.all([postToThreads(tip), postToThreads(toolPost)]);
 
   return NextResponse.json({
     date,
+    status,
     posts: { tip, toolPost },
     results: { tip: tipResult, toolPost: toolResult },
   });

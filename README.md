@@ -49,9 +49,9 @@ app/
 lib/
   music-theory.ts      音楽理論の純粋関数（移調・コード生成・BPM計算など）
   tools-data.ts        ツールのメタデータ（SEO情報を兼ねる）
-  dtm-tips.ts          DTM Tips投稿のコンテンツバンク（30日分、月ごとに差し替え）
-  tool-tips.ts         ツール活用Tips投稿のコンテンツバンク（30日分、月ごとに差し替え）
-  social-content.ts    日付から今日の投稿2件を自動選択するロジック
+  dtm-tips.ts / dtm-tips-2.ts      DTM Tips投稿のコンテンツバンク（1ヶ月目 / 2ヶ月目、各30日分）
+  tool-tips.ts / tool-tips-2.ts    ツール活用Tips投稿のコンテンツバンク（同上）
+  social-content.ts    日付から今日の投稿2件を自動選択。バンクは開始日つきで並べ、日付で自動切り替え
 components/
   tools/               ツールごとのReactコンポーネント（14個）
   ui.tsx               共通UIパーツ
@@ -67,5 +67,11 @@ vercel.json            毎日1回のCron設定
   実際の投稿はスキップされ、生成した本文だけが返るドライラン動作になります**
 - Cronの不正実行を防ぐため、Vercelの環境変数に `CRON_SECRET` を設定しておくことを推奨します
   （設定すると、Vercelが自動でそのシークレットを使って認証つきで呼び出します）
-- コンテンツの更新: `lib/dtm-tips.ts` を月ごとに新しい内容へ差し替えてpushしてください
-  （ツール紹介は `lib/tools-data.ts` のツール一覧から自動生成されるため、ツールが増えると自動で反映されます）
+- コンテンツの追加: 新しい月分のファイル（例: `dtm-tips-3.ts` / `tool-tips-3.ts`）を作り、
+  `lib/social-content.ts` の `BANKS` の末尾に1行足してpushするだけです。
+  `start` の日になると自動で切り替わり、それまでは前のバンクの並び順は変わりません
+- 残りの確認: `/api/daily-post-preview` の `status` に、今どのバンクの何日目か、
+  新しい内容の残り日数（`freshDaysLeft`）、繰り返しに入っているか（`repeating`）が出ます。
+  残り3日以内、または繰り返し中は `warning` に警告文が入ります
+- 現在のバンク: 1ヶ月目（〜2026/10/30）、2ヶ月目（2026/10/31〜11/29）。
+  **3ヶ月目は 11/30 開始なので、遅くとも 11/22 ごろまでに追加してください**
