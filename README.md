@@ -45,8 +45,13 @@ app/
   tools/[slug]/page.tsx  ツール個別ページ（14個、静的生成・独立URL）
   api/daily-post-preview/route.ts  今日の投稿2件をプレビュー（投稿はしない）
   api/cron/daily-post/route.ts     毎日自動でThreadsに投稿するCron用エンドポイント
+  api/cron/affiliate-post/route.ts アフィリエイト投稿（火・木・土の21:00 JST）。安全装置つき
+  api/affiliate-preview/route.ts   アフィリエイトの投稿予定を確認（投稿はしない）
   sitemap.ts / robots.ts  SEO
 lib/
+  threads.ts           Threads APIへの投稿（共通）
+  affiliate.ts         アフィリエイト投稿のロジック（PR自動付与・誇大表現チェック・曜日判定）
+  affiliate-posts.ts   アフィリエイト投稿のバンク（★空の間は何も投稿されない）
   music-theory.ts      音楽理論の純粋関数（移調・コード生成・BPM計算など）
   tools-data.ts        ツールのメタデータ（SEO情報を兼ねる）
   dtm-tips.ts / dtm-tips-2.ts      DTM Tips投稿のコンテンツバンク（1ヶ月目 / 2ヶ月目、各30日分）
@@ -75,3 +80,15 @@ vercel.json            毎日1回のCron設定
   残り3日以内、または繰り返し中は `warning` に警告文が入ります
 - 現在のバンク: 1ヶ月目（〜2026/10/30）、2ヶ月目（2026/10/31〜11/29）。
   **3ヶ月目は 11/30 開始なので、遅くとも 11/22 ごろまでに追加してください**
+
+## アフィリエイト投稿について（安全装置つき）
+
+- 火・木・土の21:00 JSTに、`lib/affiliate-posts.ts` に登録した投稿を順番に1件投稿します（2026/11/01〜）
+- **次の条件をすべて満たす時だけ**投稿されます。1つでも欠けると、投稿せず理由を返します
+  1. `affiliate-posts.ts` に投稿が登録されている（初期状態は空）
+  2. 今日が投稿日で、検証に通っている（本文に誇大表現がない、https、文字数）
+  3. Vercelの環境変数 `AFFILIATE_ENABLED` が `true`（これを入れるまでは確認だけで投稿しない）
+- 本文の先頭の「【PR】」と、末尾の収入表記は**コードが自動で付けます**（本文には書かない）
+- 商品を登録できるのは、実際に使った・仕様を確認したものだけです
+- 投稿予定の確認: `/api/affiliate-preview`（今後3週間分と検証結果）
+- 各プログラムの規約（Threadsでの利用可否、自動投稿、表記）は、登録前に必ず現行のものを確認してください
