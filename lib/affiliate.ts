@@ -30,6 +30,8 @@ export const AFFILIATE_WEEKDAYS = [2, 4, 6]; // 火・木・土 (UTC)
 export const AFFILIATE_START = Date.UTC(2026, 10, 1); // 2026-11-01 から
 const DAY = 86400000;
 const MAX_LENGTH = 480; // Threadsの上限500字に余裕を持たせる
+/** 同じ商品を投稿する最短の間隔（投稿日の回数）。12回 = 週3回ペースで約4週間 */
+export const MIN_CYCLE_POSTS = 12;
 
 /** 誇大表現・断定の疑いがある言葉（優良誤認のリスク）。含む文面は投稿しない */
 const BANNED_WORDS = ['絶対', '必ず', '100%', '１００％', '最強', 'No.1', 'ナンバーワン', '業界最安', '最安値', '誰でも簡単に', '効果を保証', '返金保証'];
@@ -67,7 +69,7 @@ export function affiliateOrdinal(date: Date): number | null {
   return n;
 }
 
-export type AffiliateStatus = 'no_posts' | 'before_start' | 'not_a_post_day' | 'invalid' | 'ready';
+export type AffiliateStatus = 'no_posts' | 'before_start' | 'not_a_post_day' | 'resting' | 'invalid' | 'ready';
 
 export interface AffiliatePlan {
   date: string;
@@ -83,7 +85,10 @@ export function planAffiliatePost(date: Date = new Date(), bank: AffiliatePost[]
   if (utcDay(date) < AFFILIATE_START) return { date: iso, status: 'before_start' };
   const ord = affiliateOrdinal(date);
   if (ord === null) return { date: iso, status: 'not_a_post_day' };
-  const post = bank[ord % bank.length];
+  // 商品が少ない間は、同じ商品を短い間隔で繰り返さない（MIN_CYCLE_POSTS回に1回まで）
+  const slot = ord % Math.max(bank.length, MIN_CYCLE_POSTS);
+  if (slot >= bank.length) return { date: iso, status: 'resting' };
+  const post = bank[slot];
   const errors = validateAffiliatePost(post);
   if (errors.length) return { date: iso, status: 'invalid', id: post.id, errors };
   return { date: iso, status: 'ready', id: post.id, text: formatAffiliatePost(post) };
