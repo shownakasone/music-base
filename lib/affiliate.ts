@@ -3,7 +3,7 @@
  * - 投稿日: 火・木・土（UTC基準。Cronは12:00 UTC=21:00 JSTなのでJSTの同じ日付）
  * - 本文の先頭に必ず「【PR】」、末尾にプログラムごとの収入表記を自動で付ける
  * - 検証に通らないものは投稿しない（理由を返す）
- * - AFFILIATE_ENABLED=true を設定するまでは、実際の投稿は行わない（内容の確認のみ）
+ * - 初期状態は有効。止めたい時は、Vercelの環境変数 AFFILIATE_ENABLED を "false" にする（緊急停止スイッチ）
  */
 import { AFFILIATE_POSTS } from './affiliate-posts';
 
@@ -105,6 +105,7 @@ export function upcomingAffiliatePlans(days = 21, from: Date = new Date(), bank:
   return out;
 }
 
+/** 緊急停止スイッチ: 環境変数 AFFILIATE_ENABLED が "false" の時だけ止まる（未設定なら有効） */
 export function affiliateEnabled(): boolean {
-  return process.env.AFFILIATE_ENABLED === 'true';
+  return process.env.AFFILIATE_ENABLED !== 'false';
 }

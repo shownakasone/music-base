@@ -10,7 +10,7 @@ export const dynamic = 'force-dynamic';
  *  1. lib/affiliate-posts.ts に投稿が登録されている
  *  2. 今日が投稿日（火・木・土）で、2026-11-01以降
  *  3. 検証（PR表記の自動付与・誇大表現チェック・文字数）に通っている
- *  4. 環境変数 AFFILIATE_ENABLED が "true" になっている
+ *  4. 緊急停止スイッチ（環境変数 AFFILIATE_ENABLED=false）が入っていない
  */
 export async function GET(request: Request) {
   const authHeader = request.headers.get('authorization');
@@ -23,7 +23,7 @@ export async function GET(request: Request) {
     return NextResponse.json({ posted: false, plan });
   }
   if (!affiliateEnabled()) {
-    return NextResponse.json({ posted: false, reason: 'disabled (AFFILIATE_ENABLED が "true" ではありません)', plan });
+    return NextResponse.json({ posted: false, reason: 'disabled (AFFILIATE_ENABLED=false の緊急停止スイッチが入っています)', plan });
   }
 
   const result = await postToThreads(plan.text);
