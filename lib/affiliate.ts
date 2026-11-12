@@ -27,7 +27,7 @@ export const DISCLOSURES: Record<AffiliateProgram, string> = {
 };
 
 export const AFFILIATE_WEEKDAYS = [2, 4, 6]; // 火・木・土 (UTC)
-export const AFFILIATE_START = Date.UTC(2026, 10, 1); // 2026-11-01 から
+export const AFFILIATE_START = Date.UTC(2026, 10, 14); // 2026-11-14(土) から。有効化が遅れたため、実際に投稿を始める日に合わせて起点を引き直した
 const DAY = 86400000;
 const MAX_LENGTH = 480; // Threadsの上限500字に余裕を持たせる
 /** 同じ商品を投稿する最短の間隔（投稿日の回数）。12回 = 週3回ペースで約4週間 */
