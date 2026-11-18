@@ -107,5 +107,6 @@ export function upcomingAffiliatePlans(days = 21, from: Date = new Date(), bank:
 
 /** 緊急停止スイッチ: 環境変数 AFFILIATE_ENABLED が "false" の時だけ止まる（未設定なら有効） */
 export function affiliateEnabled(): boolean {
-  return process.env.AFFILIATE_ENABLED !== 'false';
+  // 運用中止中（2026-11-18）。再開するときは環境変数 AFFILIATE_ENABLED=true と vercel.json の cron を戻す。
+  return process.env.AFFILIATE_ENABLED === 'true';
 }
