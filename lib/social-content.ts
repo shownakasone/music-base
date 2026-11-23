@@ -3,6 +3,8 @@ import { TOOL_TIPS } from './tool-tips';
 import type { ToolTip } from './tool-tips';
 import { DTM_TIPS_2 } from './dtm-tips-2';
 import { TOOL_TIPS_2 } from './tool-tips-2';
+import { DTM_TIPS_3 } from './dtm-tips-3';
+import { TOOL_TIPS_3 } from './tool-tips-3';
 
 const SITE_URL = 'https://music-base.vercel.app';
 
@@ -31,6 +33,8 @@ const BANKS: Bank[] = [
   { name: '1ヶ月目', start: d(2026, 1, 1), epoch: d(2026, 1, 1), firstShown: d(2026, 9, 25), tips: DTM_TIPS, toolTips: TOOL_TIPS },
   // 2ヶ月目：2026-10-31 に1本目から始まる
   { name: '2ヶ月目', start: d(2026, 10, 31), epoch: d(2026, 10, 31), firstShown: d(2026, 10, 31), tips: DTM_TIPS_2, toolTips: TOOL_TIPS_2 },
+  // 3ヶ月目：2026-11-30 に1本目から始まる（2ヶ月目は11/29まで）
+  { name: '3ヶ月目', start: d(2026, 11, 30), epoch: d(2026, 11, 30), firstShown: d(2026, 11, 30), tips: DTM_TIPS_3, toolTips: TOOL_TIPS_3 },
 ];
 
 const DAY = 86400000;
